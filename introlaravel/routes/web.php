@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,12 @@ Route::get('/table', function(){
 Route::get('/data-tables', function(){
     return view('layouts.data-tables');
 });
+
+Route::get('/category/create', [CategoryController::class,'create']);
+Route::post('/category', [CategoryController::class,'store']);
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{category_id}', [CategoryController::class, 'show']);
+Route::get('/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{category_id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{category_id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
