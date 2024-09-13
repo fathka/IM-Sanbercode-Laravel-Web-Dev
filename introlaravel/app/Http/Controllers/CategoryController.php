@@ -27,36 +27,33 @@ class CategoryController extends Controller
         $category = DB::table('categories')->get();
         return view('category.index', ['category' => $category]);     
     }
-    public function show($category_id)
+    public function show($id)
     {
-        $category= DB::table('categories')->where('id' , '$category_id')->first();
+        $category= DB::table('categories')->find($id);
         return view('category.show', ['category' => $category]);
     }
-    public function edit($category_id)
+    public function edit($id)
     {
-        $category = DB::table('categories')->where('id', $category_id)->first();
+        $category = DB::table('categories')->find($id);
         return view('category.edit', ['category' => $category]);
     }
-    public function update(Request $request, $category_id)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:45',
-            'umur' => 'nullable|integer',
-            'bio' =>  'nullable'
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+        DB::table('categories')
+        ->where('id', $id)
+        ->update([
+            'name' => $request['name']
         ]);
 
-        DB::table('categories')->where('id', $category_id)->update([
-            'name' => $validatedData['name'],
-            'umur' => $validatedData['umur'],
-            'bio' => $validatedData['bio']
-        ]);
-
-        return redirect()->route('category.index');
+        return redirect('/category');
     }
-    public function destroy($category_id)
+    public function destroy($id)
     {
-        DB::table('categories')->where('id', $category_id)->delete();
-        return redirect()->route('category.index');
+        DB::table('categories')->where('id', $id)->delete();
+        return redirect('/category');
     }
     //
 }

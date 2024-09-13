@@ -34,6 +34,18 @@
                 </a>
         </li>
         <li class="nav-item">
+          <a href="/category" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>Category</p>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a href="/books" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>books</p>
+              </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>

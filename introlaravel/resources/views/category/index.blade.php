@@ -19,7 +19,17 @@
         <tr>
             <td>{{$key + 1}}</td>
             <td>{{$value->name}}</td>
-            <td><a href="/category/{{$value->id}}" class="btn btn-info btn-sm">Detail</a></td>
+            <td>
+              <form action="/category/{{$value->id}}" method="POST">
+                <a href="/category/{{$value->id}}" class="btn btn-info btn-sm">Detail</a>
+                <a href="/category/{{$value->id}}/edit" class="btn btn-secondary">Edit</a>
+                @csrf
+                @method("Delete")
+                
+                <input type="submit" class="btn btn-danger" value="Delete">
+              </form>
+            </td>
+
         </tr>
         @empty
         <tr>

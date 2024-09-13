@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,19 @@ Route::get('/table', function(){
 Route::get('/data-tables', function(){
     return view('layouts.data-tables');
 });
-
+//CRUD CATEGORY
+//creat data
 Route::get('/category/create', [CategoryController::class,'create']);
 Route::post('/category', [CategoryController::class,'store']);
+//read data
 Route::get('/category', [CategoryController::class, 'index']);
-Route::get('/category/{category_id}', [CategoryController::class, 'show']);
-Route::get('/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-Route::put('/category/{category_id}', [CategoryController::class, 'update'])->name('category.update');
+Route::get('/category/{id}', [CategoryController::class, 'show']);
+//update data
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+//delete data
 Route::delete('/category/{category_id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+//CRUD BOOKS
+Route::resource('/books', BooksController::class);
 
